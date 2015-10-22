@@ -22,13 +22,15 @@ then
 		# cas du -s
 		elif [ "$1" = "-s" ] && echo $2 | grep -qE '[0-9][0-9]' && [ ${#2} -eq 2 ]
 		then
-			sort -t";" -k"$2","$2" $3 | sed -e "s/^/<tr><td>/g" -e "s/;/<\/td><td>/g" -e "s/$/<\/tr>/g" >> $4
+			head -n1 $3 | sed -e "s/^/<tr><td>/g" -e "s/;/<\/td><td>/g" -e "s/$/<\/tr>/g" >> $4
+			tail -n +2 $3 | sort -t";" -k"$2","$2" | sed -e "s/^/<tr><td>/g" -e "s/;/<\/td><td>/g" -e "s/$/<\/tr>/g" >> $4
 			echo Traiment avec le tri sur la colonne "$2" effectué
 
 		# cas du -S
 		elif [ "$1" = "-S" ] && echo $2 | grep -qE '[a-z][A-Z]']
 		then
 			# TODO
+			echo 
 		else
 			echo "Erreur, delimiteur non valide !"
 		fi		
