@@ -30,7 +30,7 @@ then
 		elif [ "$1" = "-S" ] && echo $2 | grep -qE '[a-z][A-Z]']
 		then
 			# TODO
-			echo 
+			echo
 		else
 			echo "Erreur, delimiteur non valide !"
 		fi		
